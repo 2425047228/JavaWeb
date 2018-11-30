@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <title>珍爱网会员登录_珍爱网会员登录首页_珍爱网登录首页</title>
+    <meta name="keywords" content="珍爱会员登录,珍爱网会员登录首页,珍爱网登录首页">
+    <meta name="description" content="珍爱网会员登录首页">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link href="css/login.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app" data-server-rendered="true" data-v-5731b4ef>
+        <div class="TOPBAR" data-v-5731b4ef>
+            <div class="CONTAINER f-cl primary">
+                <h1>珍爱网</h1>
+                <p class="des">每个渴望爱的人，都值得被珍爱 </p>
+            </div>
+        </div>
+        <div id="login" data-v-5731b4ef>
+            <div class="CONTAINER login-c primary" data-v-5731b4ef>
+                <div class="panel" data-v-5731b4ef>
+                    <div class="title" data-v-5731b4ef>登录珍爱网</div>
+                    <div class="content" data-v-5731b4ef>
+                        <section data-v-5731b4ef>
+                            <div class="ZA-FORM-ITEM" style="margin-bottom:18px;" data-v-5731b4ef>
+                                <div value="" class="ZA-INPUT login-input" style="display:inline-block;width:290px;"
+                                    data-v-5731b4ef><input autocomplete="" maxlength="13" placeholder="请输入手机号或珍爱ID"
+                                        type="tel" id='phone' value=''>
+                                    <!---->
+                                    <!---->
+                                </div>
+                                <!---->
+                                <!---->
+                            </div>
+                            <div class="ZA-FORM-ITEM" style="margin-bottom:18px;" data-v-5731b4ef>
+                                <div class="ZA-INPUT login-input" style="display:inline-block;width:290px;"
+                                    data-v-5731b4ef><input autocomplete="" maxlength="20" placeholder="请输入密码" type="password" id='pwd' value=''>
+                                    <!---->
+                                    <!---->
+                                </div>
+                                <!---->
+                                <!---->
+                            </div>
+                        </section>
+                        <div class="btn-actions" data-v-5731b4ef>
+                            <!---->
+                            <div class="BTN btn" data-v-5731b4ef>
+                                <div class="BTN-box primary login-btn-bg" id='login-submit'>立即登录</div>
+                            </div>
+                            <div class="register" data-v-5731b4ef><a href='register.html'>免费注册</a></div>
+                        </div>
+                    </div>
+                </div>
+                <!---->
+            </div>
+        </div>
+    </div>
+    <script src='js/jquery-1.8.3.min.js'></script>
+    <script>
+        document.getElementById('login-submit').onclick = function() {
+        	var phone = document.getElementById('phone').value
+        	,   pwd = document.getElementById('pwd').value;
+            if ('' == phone) {
+        		alert('请填写手机号');
+        	} else if ('' == pwd) {
+        		alert('请填写密码');
+        	} else {
+        		$.post('login_verify', {phone:phone, pwd:pwd}, function (res) {
+                	if ("SUCCESS" === res) {
+                		console.log(res);
+                	} else {
+                		alert(res);
+                	}
+                });
+        	}
+        }
+    </script>
+</body>
+</html>
