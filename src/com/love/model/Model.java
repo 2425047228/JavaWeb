@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Model{
+	protected DAO dao = DAO.getInstance();
 	protected String tableName = "";
 	protected String _fields = "";
 	protected String _join = "";
@@ -19,12 +20,6 @@ public class Model{
 	}
 	public Model(String tableName) {
 		this.tableName = tableName;
-	}
-	
-	protected String getQueryString() {
-		return "SELECT " + this._fields + " FROM " + this.tableName 
-				+ " " + this._join + " " + this._where
-				+ " " + this._group + " " + this._order + " " + this._limit;
 	}
 	
 	public Model fields(String fields) {
@@ -70,17 +65,44 @@ public class Model{
 		return this;
 	}
 	
+	protected String getQueryString() {
+		String str = "SELECT " + this._fields + " FROM " + this.tableName;
+		if (!this._join.equals("")) {
+			str += " " + this._join;
+		}
+		if (!this._where.equals("")) {
+			str += " " + this._where;
+		}
+		if (!this._group.equals("")) {
+			str += " " + this._group;
+		}
+		if (!this._order.equals("")) {
+			str += " " + this._order;
+		}
+		if (!this._limit.equals("")) {
+			str += " " + this._limit;
+		}
+		return str;
+	}
 	
+	//获取单条记录方法
 	public Map find() {
+		List list = dao.query(this.limit(1).getQueryString());
 		Map map = new HashMap();
-		this.getQueryString();
+		if (list.size() > 0) {
+			map.putAll((Map) list.get(0));
+		}
 		return map;
 	}
 	
+	//多条记录的方法
 	public List select() {
-		List list = new ArrayList();
-		this.getQueryString();
-		return list;
+		return dao.query(this.getQueryString());
+	}
+	
+	//关闭数据库链接
+	public void close() {
+		dao.close();
 	}
 	
 //	public <M> M test(M m) {

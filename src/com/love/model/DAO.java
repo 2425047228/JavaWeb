@@ -97,7 +97,7 @@ public final class DAO {
 	}
 	
 	//关闭结果集和清单
-	public void close(ResultSet rs, PreparedStatement ps) {
+	private void close(ResultSet rs, PreparedStatement ps) {
 		try {
 			if(null != rs) {
 				rs.close();

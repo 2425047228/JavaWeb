@@ -40,8 +40,7 @@ public class login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		User u = new User();
-		u.run();
+		
 		// TODO Auto-generated method stub
 		//request.getRequestDispatcher(getServletInfo())
 		//response.getWriter().append("Served at: ").append(request.getContextPath()).append(request.getRequestURI());

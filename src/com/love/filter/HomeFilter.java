@@ -1,6 +1,8 @@
 package com.love.filter;
 
 import java.io.IOException;
+import java.util.Map;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -40,8 +42,10 @@ public class HomeFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-		//System.out.println(new User().test().getClass().toString());
+		Map map = new User().fields("*").find();
+		System.out.println(map.isEmpty());
 		//new User().test();
+		
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		
 		HttpSession session = httpRequest.getSession();
