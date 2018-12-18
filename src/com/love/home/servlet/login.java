@@ -2,7 +2,9 @@ package com.love.home.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -11,6 +13,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.love.model.DAO;
+import com.love.model.User;
 
 /**
  * Servlet implementation class login
@@ -35,6 +40,8 @@ public class login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		User u = new User();
+		u.run();
 		// TODO Auto-generated method stub
 		//request.getRequestDispatcher(getServletInfo())
 		//response.getWriter().append("Served at: ").append(request.getContextPath()).append(request.getRequestURI());
@@ -55,9 +62,10 @@ public class login extends HttpServlet {
 			writer.write("手机号格式不正确");
 		} else if (pwd.equals("")) {
 			writer.write("密码不能为空");
-		} else {
-			writer.write("SUCCESS");
 		}
+		DAO dao = DAO.getInstance();
+		List list = dao.query("select * from user where phone = '" + phone + "'");
+		System.out.println(list.size());
 	}
 
 }

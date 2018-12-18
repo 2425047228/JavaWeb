@@ -27,11 +27,7 @@
                                 <div value="" class="ZA-INPUT login-input" style="display:inline-block;width:290px;"
                                     data-v-5731b4ef><input autocomplete="" maxlength="13" placeholder="请输入手机号或珍爱ID"
                                         type="tel" id='phone' value=''>
-                                    <!---->
-                                    <!---->
                                 </div>
-                                <!---->
-                                <!---->
                             </div>
                             <div class="ZA-FORM-ITEM" style="margin-bottom:18px;" data-v-5731b4ef>
                                 <div class="ZA-INPUT login-input" style="display:inline-block;width:290px;"
@@ -67,7 +63,7 @@
         		alert('请填写密码');
         	} else {
         		$.post('login_verify', {phone:phone, pwd:pwd}, function (res) {
-                	if ("SUCCESS" === res) {
+                	if (!res) {
                 		console.log(res);
                 	} else {
                 		alert(res);

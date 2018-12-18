@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.love.model.User;
+
 /**
  * Servlet Filter implementation class HomeFilter
  */
@@ -38,8 +40,10 @@ public class HomeFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-		
+		//System.out.println(new User().test().getClass().toString());
+		//new User().test();
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		
 		HttpSession session = httpRequest.getSession();
 //		if (session.getAttribute("id").equals(null) && httpRequest.getRequestURI() == "") {
 //			
@@ -49,7 +53,7 @@ public class HomeFilter implements Filter {
 		httpRequest.getHttpServletMapping();
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		httpRequest.getSession();
-		System.out.println(httpRequest.getHttpServletMapping());
+		System.out.println(httpRequest.getRequestURI());    ///LoveAffair/home/login.html
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
 	}
