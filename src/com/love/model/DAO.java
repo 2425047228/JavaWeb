@@ -59,8 +59,7 @@ public final class DAO {
 		ResultSet rs = null;
 		ResultSetMetaData rsmd;
 		int count;
-		try 
-		{
+		try {
 			ps = this.conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			rsmd = rs.getMetaData();
@@ -82,6 +81,33 @@ public final class DAO {
 		return list;
 	}
 	
+	public int update(String sql) {
+		PreparedStatement ps = null;
+		int count = 0;
+		try {
+			ps = this.conn.prepareStatement(sql);
+			count = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(null, ps);
+		}
+		return count;
+	}
+	
+	public boolean insert(String sql) {
+		PreparedStatement ps = null;
+		boolean exec = false;
+		try {
+			ps = this.conn.prepareStatement(sql);
+			exec = ps.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(null, ps);
+		}
+		return exec;
+	}
 	
 	
 	//关闭数据库连接

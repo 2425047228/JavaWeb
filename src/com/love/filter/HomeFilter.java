@@ -1,6 +1,9 @@
 package com.love.filter;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.Filter;
@@ -42,8 +45,19 @@ public class HomeFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-		Map map = new User().fields("*").find();
-		System.out.println(map.isEmpty());
+//		User u = new User();
+//		Map map = u.fields("*").find();
+//		System.out.println(map.isEmpty());
+//		Map<String, String> data = new HashMap();
+//		data.put("name", "杨云龙");
+//		data.put("age", "22");
+//		data.put("sex", "1");
+//		List list = new ArrayList();
+//		list.add(data);
+//		list.add(data);
+//		list.add(data);
+//		u.where("id = 1").update(data);
+//		u.close();
 		//new User().test();
 		
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
