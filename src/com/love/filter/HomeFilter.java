@@ -2,6 +2,8 @@ package com.love.filter;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Base64.Encoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,8 +18,9 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import com.love.model.User;
+import com.love.util.MD5;
+
 
 /**
  * Servlet Filter implementation class HomeFilter
@@ -45,6 +48,15 @@ public class HomeFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
+//		System.out.println(MD5.encode("1234"));
+//		String val = "dfdfdffdd";
+//		Encoder bs = Base64.getEncoder();
+//		System.out.println("########################################");
+//		String v2 = new String(bs.encode(val.getBytes()));
+//		System.out.println(v2);
+//		System.out.println("########################################");
+		
+		//System.out.println(MD5);
 //		User u = new User();
 //		Map map = u.fields("*").find();
 //		System.out.println(map.isEmpty());
