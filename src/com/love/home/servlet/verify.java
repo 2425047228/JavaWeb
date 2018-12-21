@@ -2,11 +2,9 @@ package com.love.home.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,20 +16,21 @@ import com.love.model.DAO;
 import com.love.model.User;
 
 /**
- * Servlet implementation class login
+ * Servlet implementation class verify
  */
 @WebServlet(
-		description = "登陆处理", 
+		description = "前台验证Servlet", 
 		urlPatterns = { 
-				"/home/login_verify"
+				"/home/verify_login", 
+				"/home/verify_register"
 		})
-public class login extends HttpServlet {
+public class verify extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public login() {
+    public verify() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,17 +39,25 @@ public class login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		// TODO Auto-generated method stub
-		//request.getRequestDispatcher(getServletInfo())
-		//response.getWriter().append("Served at: ").append(request.getContextPath()).append(request.getRequestURI());
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		response.setCharacterEncoding("UTF-8");    //设置响应字符集
+		if (request.getRequestURI().indexOf("/home/verify_login") != -1) {    //登陆验证
+			this.login(request, response);
+		} else if (request.getRequestURI().indexOf("/home/verify_register") != -1) {    //注册验证
+			this.register(request, response);
+		}
+	}
+	
+	//登陆处理
+	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//获取post参数
 		String phone = request.getParameter("phone");
 		String pwd = request.getParameter("pwd");
@@ -62,9 +69,17 @@ public class login extends HttpServlet {
 		} else if (pwd.equals("")) {
 			writer.write("密码不能为空");
 		}
-		DAO dao = DAO.getInstance();
-		List list = dao.query("select * from user where phone = '" + phone + "'");
-		System.out.println(list.size());
+		Map<String, String> where = new HashMap();
+		where.put("phone", phone);
+		User user = new User();
+		Map data = user.where(where).find();
+		System.out.println(data.isEmpty());
+		
+	}
+	
+	//注册处理
+	private void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
 
 }

@@ -23,7 +23,7 @@
             <div class="CONTAINER f-cl primary" style="margin:20px auto;">
                 <div class="CONTAINER f-fl" style="width:100%;padding:20px 30px 122px;background-color:#fff;border-radius:4px;" data-v-24404f2c>
                     <div class="m-title" data-v-24404f2c>编辑征婚资料</div>
-                    <form method="POST" action="" id="form" data-v-24404f2c>
+                    <form method="POST" action="verify_register" id="form" data-v-24404f2c>
                         <div class="m-form" data-v-24404f2c>
                             <div class="form-item f-cl" data-v-24404f2c>
                                 <div class="label f-fl" data-v-24404f2c>我是一位</div>
@@ -208,7 +208,8 @@
     </div>
     <script src='js/jquery-1.8.3.min.js'></script>
     <script>
-        document.forms[0].onsubmit = function () {
+        document.forms[0].onsubmit = function (e) {
+        	e.preventDefault();
             console.log('#####################');
         }
         $(function () {

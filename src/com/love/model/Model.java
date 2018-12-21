@@ -47,6 +47,17 @@ public class Model{
 		return this;
 	}
 	
+	public <K, V> Model where (Map<K, V> map) {
+		for (Map.Entry entry : map.entrySet()) {
+			if (this._where.equals("")) {
+				this._where += "WHERE `" + entry.getKey() + "`='" + entry.getValue() + "'";
+			} else {
+				this._where += " AND `" + entry.getKey() + "`='" + entry.getValue() + "'";
+			}
+		}
+		return this;
+	}
+	
 	public Model group(String group) {
 		this._group = "GROUP BY " + group;
 		return this;
@@ -77,6 +88,9 @@ public class Model{
 	
 	//获取查询拼接的字符串
 	protected String getQueryString() {
+		if (this._fields.equals("")) {
+			this.fields("*");
+		}
 		String str = "SELECT " + this._fields + " FROM " + this.tableName;
 		if (!this._join.equals("")) {
 			str += " " + this._join;

@@ -25,7 +25,7 @@ import com.love.util.MD5;
 /**
  * Servlet Filter implementation class HomeFilter
  */
-@WebFilter("/home/*")
+@WebFilter({"/home/login.html", "/home/register.html"})
 public class HomeFilter implements Filter {
 
     /**
@@ -83,7 +83,7 @@ public class HomeFilter implements Filter {
 		httpRequest.getHttpServletMapping();
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		httpRequest.getSession();
-		System.out.println(httpRequest.getRequestURI());    ///LoveAffair/home/login.html
+		//System.out.println(httpRequest.getRequestURI());    ///LoveAffair/home/login.html
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
 	}

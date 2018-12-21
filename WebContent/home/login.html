@@ -61,7 +61,7 @@
         	} else if ('' == pwd) {
         		alert('请填写密码');
         	} else {
-        		$.post('login_verify', {phone:phone, pwd:pwd}, function (res) {
+        		$.post('verify_login', {phone:phone, pwd:pwd}, function (res) {
                 	if (!res) {
                 		console.log(res);
                 	} else {
