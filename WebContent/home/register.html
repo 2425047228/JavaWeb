@@ -209,6 +209,8 @@
     <script src='js/jquery-1.8.3.min.js'></script>
     <script>
         document.forms[0].onsubmit = function (e) {
+            var form = new FormData(this);
+            console.log(form);
         	e.preventDefault();
             console.log('#####################');
         }

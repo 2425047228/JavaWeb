@@ -8,6 +8,7 @@ import java.util.Map;
 public class Model{
 	protected DAO dao = DAO.getInstance();
 	protected String tableName = "";
+	protected String sql = "";
 	protected String _fields = "";
 	protected String _join = "";
 	protected String _where = "";
@@ -76,6 +77,10 @@ public class Model{
 		return this;
 	}
 	
+	public String getSql() {
+		return this.sql;
+	}
+	
 	//清空暂存操作
 	protected void clean() {
 		this._fields = "";
@@ -112,8 +117,9 @@ public class Model{
 	}
 	
 	//获取单条记录方法
-	public Map find() {
-		List list = dao.query(this.limit(1).getQueryString());
+	public Map get() {
+		this.sql = this.limit(1).getQueryString();
+		List list = dao.query(this.sql);
 		Map map = new HashMap();
 		if (list.size() > 0) {
 			map.putAll((Map) list.get(0));
@@ -122,8 +128,9 @@ public class Model{
 	}
 	
 	//多条记录的方法
-	public List select() {
-		return dao.query(this.getQueryString());
+	public List getAll() {
+		this.sql = this.getQueryString();
+		return dao.query(this.sql);
 	}
 	
 	//获取传递的map中的列名

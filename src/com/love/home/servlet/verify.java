@@ -5,15 +5,23 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiFunction;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import io.jsonwebtoken.*;
+import io.jsonwebtoken.impl.JwtMap;
 
 import com.love.model.DAO;
 import com.love.model.User;
+import com.love.util.JWT;
+
 
 /**
  * Servlet implementation class verify
@@ -58,6 +66,11 @@ public class verify extends HttpServlet {
 	
 	//登陆处理
 	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Map param = request.getParameterMap();
+		System.out.println(param.toString());
+		String token = JWT.create("this is a token", 1000);
+		System.out.println(token);
+		JWT.parse(token);
 		//获取post参数
 		String phone = request.getParameter("phone");
 		String pwd = request.getParameter("pwd");
@@ -69,17 +82,24 @@ public class verify extends HttpServlet {
 		} else if (pwd.equals("")) {
 			writer.write("密码不能为空");
 		}
-		Map<String, String> where = new HashMap();
-		where.put("phone", phone);
 		User user = new User();
-		Map data = user.where(where).find();
+		Map data = user.getByPhone(phone);
+		if (data.isEmpty()) {
+			writer.write("用户不存在");
+		} else if (user.verify(pwd)) {
+//			HttpSession session = request.getSession();
+//			Cookie[] cookie = request.getCookies();
+		} else {
+			writer.write("手机号或密码错误");
+		}
 		System.out.println(data.isEmpty());
 		
 	}
 	
 	//注册处理
 	private void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		Map param = request.getParameterMap();
+		System.out.println(param.toString());
 	}
 
 }
