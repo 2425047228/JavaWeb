@@ -68,10 +68,6 @@ public class verify extends HttpServlet {
 	//登陆处理
 	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map param = request.getParameterMap();
-		System.out.println(param.toString());
-//		String token = JWT.create("this is a token", 1000);
-//		System.out.println(token);
-//		JWT.parse(token);
 		//获取post参数
 		String phone = request.getParameter("phone");
 		String pwd = request.getParameter("pwd");
@@ -85,17 +81,18 @@ public class verify extends HttpServlet {
 		}
 		User user = new User();
 		Map data = user.getByPhone(phone);
-		user.close();
 		if (data.isEmpty()) {
 			writer.write("用户不存在");
-		} else if (user.verify(pwd)) {
-//			HttpSession session = request.getSession();
-//			Cookie[] cookie = request.getCookies();
-		} else {
+		} else if (!user.verify(pwd)) {
 			writer.write("手机号或密码错误");
+		} else {
+			long hours = DateUtil.hours(24);
+			String token = JWT.create((String) data.get("id"), hours);
+			Cookie cookie = new Cookie("token", token);
+			cookie.setMaxAge((int) hours);
+			response.addCookie(cookie);
 		}
-		System.out.println(data.isEmpty());
-		
+		user.close();	
 	}
 	
 	//注册处理

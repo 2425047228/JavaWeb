@@ -19,15 +19,15 @@ public class DateUtil {
         return sdf.format(new Date(Long.valueOf(seconds+"000")));  
     }  
     /** 
-     * 日期格式字符串转换成时间戳 
+     * 日期格式字符串转换成时间戳 （精确到秒） 
      * @param date 字符串日期 
      * @param format 如：yyyy-MM-dd HH:mm:ss 
      * @return 
      */  
-    public static long date2TimeStamp(String date_str,String format){  
+    public static long date2TimeStamp(String date,String format){  
         try {  
             SimpleDateFormat sdf = new SimpleDateFormat(format);  
-            return sdf.parse(date_str).getTime()/1000;  
+            return sdf.parse(date).getTime() / 1000;  
         } catch (Exception e) {
             e.printStackTrace();  
         }  
@@ -38,8 +38,19 @@ public class DateUtil {
      * 取得当前时间戳（精确到秒） 
      * @return 
      */  
-    public static String timeStamp(){  
-        long time = System.currentTimeMillis();  
-        return String.valueOf(time/1000);
-    }  
+    public static long timeStamp(){
+    	return System.currentTimeMillis() / 1000;
+    } 
+    
+    public static long timeStamp(int hours) {
+    	return (System.currentTimeMillis() / 1000 + DateUtil.hours(hours));
+    }
+    
+    public static long hours(int hours) {
+    	return hours * 3600;
+    }
+    
+    public static long minutes(int minutes) {
+    	return minutes * 60;
+    }
 }

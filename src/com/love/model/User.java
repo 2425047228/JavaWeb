@@ -43,7 +43,7 @@ public final class User extends Model {
 	}
 	
 	public boolean register(Map map) {
-		String reg_time = DateUtil.timeStamp();
+		String reg_time = String.valueOf(DateUtil.timeStamp());
 		String salt = Utils.getRandomString(64);
 		map.put("salt", salt);
 		map.put("reg_time", reg_time);

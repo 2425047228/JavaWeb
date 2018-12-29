@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -26,12 +27,12 @@ import com.love.util.MD5;
  * Servlet Filter implementation class HomeFilter
  */
 @WebFilter({"/home/login.html", "/home/register.html"})
-public class HomeFilter implements Filter {
+public class HomeSignFilter implements Filter {
 
     /**
      * Default constructor. 
      */
-    public HomeFilter() {
+    public HomeSignFilter() {
         // TODO Auto-generated constructor stub
     }
 
@@ -46,6 +47,12 @@ public class HomeFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		HttpServletRequest hsr = (HttpServletRequest) request;
+		Cookie[] cookies = hsr.getCookies();
+		System.out.println(cookies.length);
+		for (int i = 0; i < cookies.length; i++) {
+            System.out.println(cookies[i].getName() + ":" + cookies[i].getValue());
+        }
 		// TODO Auto-generated method stub
 		// place your code here
 //		System.out.println(MD5.encode("1234"));
