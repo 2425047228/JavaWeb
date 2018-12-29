@@ -24,6 +24,18 @@
                 <div class="CONTAINER f-fl" style="width:100%;padding:20px 30px 122px;background-color:#fff;border-radius:4px;" data-v-24404f2c>
                     <div class="m-title" data-v-24404f2c>编辑征婚资料</div>
                     <form method="POST" action="verify_register" id="form" data-v-24404f2c>
+                    <div class="m-form" data-v-24404f2c>
+                            <div class="form-item f-cl" data-v-24404f2c>
+                                <div class="label f-fl" data-v-24404f2c>姓&emsp;&emsp;名</div>
+                                <div class="f-fl ZA-FORM-ITEM" data-v-24404f2c>
+                                    <div class="f-fl" data-v-24404f2c>
+                                        <div class="ZA-INPUT" style="display:inline-block;width:256px;" data-v-24404f2c>
+                                            <input type="text" name="name" maxlength="8" placeholder="您的姓名" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="m-form" data-v-24404f2c>
                             <div class="form-item f-cl" data-v-24404f2c>
                                 <div class="label f-fl" data-v-24404f2c>我是一位</div>
@@ -45,7 +57,7 @@
                                 <div class="f-fl ZA-FORM-ITEM" data-v-24404f2c>
                                     <div class="f-fl" data-v-24404f2c>
                                         <div class="ZA-INPUT" style="display:inline-block;width:256px;" data-v-24404f2c>
-                                            <input type="date" name="addr" placeholder="请选择出生日期" required>
+                                            <input type="date" name="birthday" placeholder="请选择出生日期" required>
                                         </div>
                                     </div>
                                 </div>
@@ -158,24 +170,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="m-form" data-v-24404f2c>
-                            <div class="form-item f-cl" data-v-24404f2c>
-                                <div class="label f-fl" data-v-24404f2c>校验码</div>
-                                <div class="f-fl ZA-FORM-ITEM" data-v-24404f2c>
-                                    <div class="f-fl" data-v-24404f2c>
-                                        <div class="ZA-INPUT" style="display:inline-block;" data-v-24404f2c>
-                                            <input type="text" name="captcha" maxlength="10" placeholder="请输入校验码" required>
-                                        </div>
-                                        <div class="IMG-CODE" style="vertical-align:top;" data-v-1800ce18 data-v-24404f2c>
-                                            <img src="http://www.zhenai.com/api/register/getWapRegisterImgCode.do?t=1543301438991" class="img" data-v-1800ce18>
-                                            <span class="change" data-v-1800ce18>看不清？换一张</span>
-                                        </div>
-                                    </div>
-                                    <!---->
-                                    <!---->
-                                </div>
-                            </div>
-                        </div>
                         <div class="btn-actions f-cl" data-v-24404f2c>
                             <div class="BTN f-fl" style="width:200px;" data-v-24404f2c>
                                 <button type="submit" class="BTN-box primary" style="border:none;">免费注册 开启珍爱之旅</button>
@@ -190,7 +184,7 @@
                                 <div class="top-bar" data-v-502d666c><img src="css/top-bar.b73529f.png"></div>
                                 <div class="bottom-content" data-v-502d666c>
                                     <div class="content" data-v-502d666c>
-                                        <div class="content-txt" data-v-502d666c id="msg">该号码已在珍爱网注册</div>
+                                        <div class="content-txt" data-v-502d666c id="msg">注册成功</div>
                                         <div class="content-btns" data-v-502d666c>
                                             <div class="BTN" style="width:200px;margin:0 auto;" data-v-502d666c>
                                                 <div class="BTN-box primary" onclick="location.href='login.html'">直接登录</div>
@@ -199,7 +193,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="close" data-v-502d666c></div>
+                            <div class="close" data-v-502d666c id="close"></div>
                         </div>
                     </section>
                 </div>
@@ -209,15 +203,26 @@
     <script src='js/jquery-1.8.3.min.js'></script>
     <script>
         document.forms[0].onsubmit = function (e) {
-            var form = new FormData(this);
-            console.log(form);
+        	$.ajax({
+        		url:'verify_register',
+        		type:'post',
+        		data:$('form').serialize(),
+        		success:function(data){
+        			if (data) {
+        				alert(data);
+        			} else {
+        				$("#dialog").removeAttr('style');
+        			}
+        		}
+        	})
         	e.preventDefault();
-            console.log('#####################');
         }
         $(function () {
-            var dialog = $("#dialog")
-                , msg = $("#msg");
+        	$('#close').click(function () {
+        		$("#dialog").attr('style', 'display:none');
+        	});
         });
+        
     </script>
 </body>
 

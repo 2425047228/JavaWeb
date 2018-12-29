@@ -113,18 +113,13 @@ public class Model{
 			str += " " + this._limit;
 		}
 		this.clean();
-		return str;
+		return str + ";";
 	}
 	
 	//获取单条记录方法
 	public Map get() {
 		this.sql = this.limit(1).getQueryString();
-		List list = dao.query(this.sql);
-		Map map = new HashMap();
-		if (list.size() > 0) {
-			map.putAll((Map) list.get(0));
-		}
-		return map;
+		return dao.queryOne(this.sql);
 	}
 	
 	//多条记录的方法
@@ -199,6 +194,14 @@ public class Model{
 		} else {
 			return false;
 		}
+	}
+	//获取插入记录的所有主键值
+	public List getKeys() {
+		return dao.getKeys();
+	}
+	//获取插入记录的第一个主键值
+	public long getKey() {
+		return dao.getKey();
 	}
 	
 	//更新数据操作

@@ -20,7 +20,9 @@ import io.jsonwebtoken.impl.JwtMap;
 
 import com.love.model.DAO;
 import com.love.model.User;
+import com.love.util.DateUtil;
 import com.love.util.JWT;
+import com.love.util.Utils;
 
 
 /**
@@ -48,7 +50,6 @@ public class verify extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -68,9 +69,9 @@ public class verify extends HttpServlet {
 	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map param = request.getParameterMap();
 		System.out.println(param.toString());
-		String token = JWT.create("this is a token", 1000);
-		System.out.println(token);
-		JWT.parse(token);
+//		String token = JWT.create("this is a token", 1000);
+//		System.out.println(token);
+//		JWT.parse(token);
 		//获取post参数
 		String phone = request.getParameter("phone");
 		String pwd = request.getParameter("pwd");
@@ -84,6 +85,7 @@ public class verify extends HttpServlet {
 		}
 		User user = new User();
 		Map data = user.getByPhone(phone);
+		user.close();
 		if (data.isEmpty()) {
 			writer.write("用户不存在");
 		} else if (user.verify(pwd)) {
@@ -98,8 +100,65 @@ public class verify extends HttpServlet {
 	
 	//注册处理
 	private void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Map param = request.getParameterMap();
-		System.out.println(param.toString());
+		PrintWriter writer = response.getWriter();
+		String name = request.getParameter("name")
+		,      sex = request.getParameter("sex")
+		,      addr = request.getParameter("addr")
+		,      marital = request.getParameter("marital")
+		,      edu = request.getParameter("edu")
+		,      phone = request.getParameter("phone")
+		,      pwd = request.getParameter("pwd");
+		long birthday = DateUtil.date2TimeStamp(request.getParameter("birthday"), "yyyy-MM-dd");
+		int height =Integer.parseInt(request.getParameter("height"));
+		int income = Integer.parseInt(request.getParameter("income"));
+		User user = new User();
+		Map data = user.getByPhone(phone);
+		
+		if (data.isEmpty()) {
+			if (name.equals("")) {
+				writer.write("姓名不能为空");
+			} else if (name.length() > 8) {
+				writer.write("姓名过长");
+			} else if (!sex.equals("1") && !sex.equals("2")) {
+				writer.write("性别错误");
+			} else if (0 == birthday) {
+				writer.write("生日错误");
+			} else if (!marital.equals("1") && !marital.equals("2") && !marital.equals("3")) {
+				writer.write("婚姻状况错误");
+			} else if (height < 50) {
+				writer.write("身高错误");
+			} else if (height > 255) {
+				height = 255;
+			} else if (!edu.equals("1") && !edu.equals("2") && !edu.equals("3") && !edu.equals("4") && !edu.equals("5") && !edu.equals("6")) {
+				writer.write("学历错误");
+			} else if (income > 65535) {
+				income = 65500;
+			} else if (income < 0) {
+				writer.write("月收入错误");
+			} else if (phone.length() != 11 || !Utils.isNumeric(phone)) {
+				writer.write("手机号错误");
+			} else if (pwd.equals("")) {
+				writer.write("密码不能为空");
+			} else {
+				Map<String, String> map = new HashMap();
+				map.put("name", name);
+				map.put("sex", sex);
+				map.put("addr", addr);
+				map.put("marital", marital);
+				map.put("edu", edu);
+				map.put("phone", phone);
+				map.put("pwd", pwd);
+				map.put("birthday", String.valueOf(birthday));
+				map.put("height", String.valueOf(height));
+				map.put("income", String.valueOf(income));
+				if (!user.register(map)) {
+					writer.write("注册失败");
+				}
+			}
+		} else {
+			writer.write("该手机号已被注册");
+		}
+		user.close();
 	}
 
 }

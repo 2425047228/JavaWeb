@@ -3,7 +3,9 @@ package com.love.model;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.love.util.DateUtil;
 import com.love.util.MD5;
+import com.love.util.Utils;
 
 public final class User extends Model {
 	private Map data = null;
@@ -38,5 +40,14 @@ public final class User extends Model {
 	public Map getByPhone(String phone) {
 		this.data = this.where("`phone` = '" + phone + "'").get();
 		return this.data;
+	}
+	
+	public boolean register(Map map) {
+		String reg_time = DateUtil.timeStamp();
+		String salt = Utils.getRandomString(64);
+		map.put("salt", salt);
+		map.put("reg_time", reg_time);
+		map.put("pwd", MD5.encode(map.get("pwd") + salt + reg_time));
+		return this.insert(map);
 	}
 }

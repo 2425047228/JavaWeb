@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="tomcat9.0.13" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY" singleton="false">
+    <option name="DOC_BASE" value="F:\JavaEE\LoveAffair\WebContent" />
+    <option name="CONTEXT_PATH" value="/LoveAffair" />
+    <option name="TOMCAT_PORT" value="8080" />
+    <option name="AJP_PORT" value="8009" />
+    <option name="ADMIN_PORT" value="8005" />
+    <option name="VM_OPTIONS" value="" />
+    <option name="PASS_PARENT_ENV_OPTIONS" value="true" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
