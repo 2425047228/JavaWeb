@@ -20,13 +20,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.love.model.User;
+import com.love.util.JWT;
 import com.love.util.MD5;
+import com.love.util.Utils;
 
 
 /**
  * Servlet Filter implementation class HomeFilter
  */
-@WebFilter({"/home/login.html", "/home/register.html"})
+@WebFilter({"/home/login.html", "/home/register.html", "/home/verify_login", "/home/verify_register"})
 public class HomeSignFilter implements Filter {
 
     /**
@@ -49,48 +51,22 @@ public class HomeSignFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest hsr = (HttpServletRequest) request;
 		Cookie[] cookies = hsr.getCookies();
-		System.out.println(cookies.length);
-		for (int i = 0; i < cookies.length; i++) {
-            System.out.println(cookies[i].getName() + ":" + cookies[i].getValue());
-        }
-		// TODO Auto-generated method stub
-		// place your code here
-//		System.out.println(MD5.encode("1234"));
-//		String val = "dfdfdffdd";
-//		Encoder bs = Base64.getEncoder();
-//		System.out.println("########################################");
-//		String v2 = new String(bs.encode(val.getBytes()));
-//		System.out.println(v2);
-//		System.out.println("########################################");
-		
-		//System.out.println(MD5);
-//		User u = new User();
-//		Map map = u.fields("*").find();
-//		System.out.println(map.isEmpty());
-//		Map<String, String> data = new HashMap();
-//		data.put("name", "杨云龙");
-//		data.put("age", "22");
-//		data.put("sex", "1");
-//		List list = new ArrayList();
-//		list.add(data);
-//		list.add(data);
-//		list.add(data);
-//		u.where("id = 1").update(data);
-//		u.close();
-		//new User().test();
-		
-		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		
-		HttpSession session = httpRequest.getSession();
-//		if (session.getAttribute("id").equals(null) && httpRequest.getRequestURI() == "") {
-//			
-//		} else {
-//			
-//		}
-		httpRequest.getHttpServletMapping();
-		HttpServletResponse httpResponse = (HttpServletResponse) response;
-		httpRequest.getSession();
-		//System.out.println(httpRequest.getRequestURI());    ///LoveAffair/home/login.html
+		int len = cookies.length;
+		String token = null;
+		for (int i = 0;i < len;++i) {
+			if (cookies[i].getName().equals("token")) {
+				token = cookies[i].getValue();
+				System.out.println(token);
+				break;
+			}
+		}
+		if (null != token && !token.equals("")) {
+			Map sign = JWT.parse(token);
+			if (!sign.isEmpty()) {
+				HttpServletResponse hsp = (HttpServletResponse) response;
+				hsp.sendRedirect(Utils.dir + "home/main/index.html");
+			}
+		}
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
 	}

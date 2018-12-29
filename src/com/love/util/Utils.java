@@ -3,6 +3,7 @@ package com.love.util;
 import java.util.Random;
 
 public class Utils {
+	public static final String dir = "/LoveAffair/";
 	
 	public static boolean isNumeric(String str)
 	{
