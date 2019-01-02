@@ -15,3 +15,13 @@ CREATE TABLE user(
 	reg_time BIGINT UNSIGNED NOT NULL COMMENT '注册时间戳',
 	KEY (reg_time)
 )ENGINE = innodb default charset utf8;
+
+CREATE TABLE mail(
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    uid INT UNSIGNED NOT NULL COMMENT '用户id,user表id',
+    from_uid INT UNSIGNED NOT NULL COMMENT '发送邮件的用户id,user表id',
+    status TINYINT UNSIGNED NOT NULL DEFAULT 1 COMMENT '邮件状态:0-已删除,1-未读,2-已读',
+    send_time BIGINT UNSIGNED NOT NULL COMMENT '发送时间',
+    KEY (uid),
+    KEY (from_uid)
+)ENGINE = innodb default charset utf8 COMMENT '用户邮箱表';

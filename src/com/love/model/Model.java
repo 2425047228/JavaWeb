@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class Model{
 	protected DAO dao = DAO.getInstance();
+	protected String prefix = "";    //数据表名前缀
 	protected String tableName = "";
 	protected String sql = "";
 	protected String _fields = "";
@@ -17,10 +18,10 @@ public class Model{
 	protected String _limit = "";
 	
 	public Model() {
-		this.tableName = this.getClass().getSimpleName().toLowerCase();
+		this.tableName = this.prefix + this.getClass().getSimpleName().toLowerCase();
 	}
 	public Model(String tableName) {
-		this.tableName = tableName;
+		this.tableName = this.prefix + tableName;
 	}
 	
 	public Model fields(String fields) {
