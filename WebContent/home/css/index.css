@@ -105,5 +105,18 @@
 	opacity:0;
 	transform:translate(-50%,-100%);
 }
-</style>
+.right-count[data-v-813ab9b4] {
+    position: absolute;
+    right: -14px;
+    top: 18px;
+    font-size: 14px;
+    font-weight: 400;
+    display: inline-block;
+    padding: 0 5px;
+    height: 18px;
+    background: #ff7351;
+    border-radius: 4px;
+    color: #fff;
+    line-height: 17px;
+}
   

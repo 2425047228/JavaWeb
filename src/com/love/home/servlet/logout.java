@@ -34,7 +34,8 @@ public class logout extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Cookie cookie = new Cookie("token", "");
+		Cookie cookie = new Cookie("token", null);
+		cookie.setPath("/");
 		cookie.setMaxAge(1);
 		response.addCookie(cookie);
 		Cookie[] cookies = request.getCookies();
@@ -43,7 +44,6 @@ public class logout extends HttpServlet {
 		for (int i = 0;i < len;++i) {
 			if (cookies[i].getName().equals("token")) {
 				token = cookies[i].getValue();
-				System.out.println(token);
 				break;
 			}
 		}

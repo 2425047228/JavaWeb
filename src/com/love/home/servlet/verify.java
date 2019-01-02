@@ -89,6 +89,7 @@ public class verify extends HttpServlet {
 			long hours = DateUtil.hours(24);
 			String token = JWT.create((String) data.get("id"), hours);
 			Cookie cookie = new Cookie("token", token);
+			cookie.setPath("/");
 			cookie.setMaxAge((int) hours);
 			response.addCookie(cookie);
 		}

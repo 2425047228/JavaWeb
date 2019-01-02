@@ -25,7 +25,7 @@ public class Utils {
         //长度为几就循环几次
         for (int i = 0;i < len;++i) {
             //产生0-61的数字
-            num = random.nextInt(63);
+            num = random.nextInt(62);
             //将产生的数字通过length次承载到sb中
             sb.append(str.charAt(num));
         }
