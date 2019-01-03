@@ -54,7 +54,9 @@ public final class User extends Model {
 	public int modify(Map map) {
 		String where = "id = '" + map.get("id") + "'";
 		map.remove("id");
-		if (!map.get("pwd").equals("")) {
+		if (map.get("pwd").equals("")) {
+			map.remove("pwd");
+		} else {
 			Map data = this.fields("salt, reg_time").where(where).get();
 			map.put("pwd", MD5.encode((String) map.get("pwd") + data.get("salt") + data.get("reg_time")));
 		}

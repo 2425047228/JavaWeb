@@ -79,7 +79,7 @@
                                     <p class="nick-name f-fl" data-v-77726eec="">会员1633918376</p>
                                     <p class="member-id f-cl" data-v-77726eec="">ID:1633918376</p>
                                     <div class="profile-view" data-v-77726eec="">
-                                        <a href="my_base_info.html" class="span-purple" data-v-77726eec="">完善资料</a>
+                                        <a href="my_base_info.jsp" class="span-purple" data-v-77726eec="">完善资料</a>
                                     </div>
                                 </div>
                             </div>
