@@ -25,3 +25,18 @@ CREATE TABLE mail(
     KEY (uid),
     KEY (from_uid)
 )ENGINE = innodb default charset utf8 COMMENT '用户邮箱表';
+
+CREATE TABLE seek(
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    uid INT UNSIGNED NOT NULL COMMENT '用户id,user表id',
+    sex TINYINT UNSIGNED NOT NULL COMMENT '性取向:0-不限,1-男,2-女',
+    min_age TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '最小年龄,0为不限',
+    max_age TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '最大年龄,0为不限',
+    min_height TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '最低身高,0为不限',
+    max_height TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '最高身高,0为不限',
+    min_income INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '最低收入,0为不限',
+    max_income INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '最高收入,0为不限',
+    edu TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '学历:0-不限,1-高中及以下,2-中专,3-大专,4-大学本科,5-硕士,6-博士',
+    marital TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '婚姻状况:0-不限,1-未婚,2-离婚,3-丧偶',
+    KEY (uid)
+)ENGINE = innodb default charset utf8 COMMENT '择偶条件表';
