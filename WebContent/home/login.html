@@ -63,7 +63,7 @@
         	} else {
         		$.post('verify_login', {phone:phone, pwd:pwd}, function (res) {
                 	if (!res) {
-                		location.href = 'main/index.html';
+                		location.href = 'main/index.jsp';
                 		console.log(res);
                 	} else {
                 		alert(res);

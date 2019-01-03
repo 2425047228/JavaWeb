@@ -12,8 +12,10 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.love.util.JWT;
+import com.love.util.Utils;
 
 /**
  * Servlet Filter implementation class HomeMainFilter
@@ -54,7 +56,10 @@ public class HomeMainFilter implements Filter {
 		if (null != token) {
 			Map sign = JWT.parse(token);
 			if (!sign.isEmpty()) {
-				request.setAttribute("test", "哈哈哈");
+				request.setAttribute("id", sign.get("subject"));
+			} else {
+				HttpServletResponse hsp = (HttpServletResponse) response;
+				hsp.sendRedirect(Utils.dir + "home/login.html");
 			}
 		}
 		// pass the request along the filter chain
