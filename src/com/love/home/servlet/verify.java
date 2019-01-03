@@ -113,10 +113,8 @@ public class verify extends HttpServlet {
 		Map data = user.getByPhone(phone);
 		
 		if (data.isEmpty()) {
-			if (name.equals("")) {
-				writer.write("姓名不能为空");
-			} else if (name.length() > 8) {
-				writer.write("姓名过长");
+			if (name.equals("") || name.length() > 8) {
+				writer.write("姓名格式错误");
 			} else if (!sex.equals("1") && !sex.equals("2")) {
 				writer.write("性别错误");
 			} else if (0 == birthday) {
@@ -129,12 +127,12 @@ public class verify extends HttpServlet {
 				height = 255;
 			} else if (!edu.equals("1") && !edu.equals("2") && !edu.equals("3") && !edu.equals("4") && !edu.equals("5") && !edu.equals("6")) {
 				writer.write("学历错误");
-			} else if (income > 65535) {
-				income = 65500;
+			} else if (income > 999999999) {
+				income = 1000000000;
 			} else if (income < 0) {
 				writer.write("月收入错误");
 			} else if (phone.length() != 11 || !Utils.isNumeric(phone)) {
-				writer.write("手机号错误");
+				writer.write("手机号格式错误");
 			} else if (pwd.equals("")) {
 				writer.write("密码不能为空");
 			} else {

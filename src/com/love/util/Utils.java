@@ -1,5 +1,6 @@
 package com.love.util;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Random;
 
 public class Utils {
@@ -31,5 +32,9 @@ public class Utils {
         }
         //将承载的字符转换成字符串
         return sb.toString();
+    }
+    
+    public static String iso2utf8(String value) throws UnsupportedEncodingException {
+    	return new String(value.getBytes("ISO-8859-1"), "UTF-8");
     }
 }

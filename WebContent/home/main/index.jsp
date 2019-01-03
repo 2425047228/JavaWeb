@@ -3,7 +3,7 @@
 <html lang="zh-cn">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>çç±ç½-æççç±</title>
+        <title>珍爱网-我的珍爱</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <link rel="shortcut icon" href="../css/favicon.ico">
         <link href="../css/base.css" rel="stylesheet" />
@@ -36,33 +36,35 @@
                 <div class="CONTAINER f-fl" style="width:880px;">
                     <div class="m-recommend" data-v-7b4fded4="">
                         <div class="recommend-title" data-v-7b4fded4="">
-                            <span data-v-7b4fded4="">é»é¾æ±åå°æ»¨å®¾å¿ | 18-25å²çå¥³å£«</span>
-                            <span class="change f-fr" data-v-7b4fded4="">ä¿®æ¹æ©å¶æ¡ä»¶</span></div>
+                            <span data-v-7b4fded4="">黑龙江哈尔滨宾县 | 18-25岁的女士</span>
+                            <span class="change f-fr" data-v-7b4fded4="">修改择偶条件</span></div>
                         <div class="recommend-content f-cl" data-v-7b4fded4="">
                             <div data-v-7b4fded4="" class="recommend-item f-fl item-bottom-border">
                                 <img data-v-7b4fded4="" src="../css/g_2.jpg" class="f-fl" />
                                 <div data-v-7b4fded4="" class="f-fl">
                                     <div data-v-7b4fded4="" class="f-cl">
-                                        <p data-v-7b4fded4="" class="nickname f-fl">å®å°è±</p>
+                                        <p data-v-7b4fded4="" class="nickname f-fl">宋小花</p>
                                         <div data-v-7b4fded4="" class="tags f-fl"></div>
                                     </div>
-                                    <p data-v-7b4fded4="" class="condition f-cl">23å² | åå°æ»¨ | 160cm | 160cm</p>
-                                    <p data-v-7b4fded4="" class="heart-word">ææ­£å¨å¯»æ¾é»é¾æ±åå°æ»¨åå²åº,å¹´é¾å¨19-33å²,æèªå¨5000åä»¥ä¸,çç·æ§</p>
+                                    <p data-v-7b4fded4="" class="condition f-cl">23岁 | 哈尔滨 | 160cm | 160cm</p>
+                                    <p data-v-7b4fded4="" class="heart-word">我正在寻找黑龙江哈尔滨南岗区,年龄在19-33岁,月薪在5000元以上,的男性</p>
                                     <span data-v-7b4fded4="" class="f-cl">
-                                        <div data-v-7b4fded4="" class="default-sayhi">ææå¼</div></span>
+                                        <div data-v-7b4fded4="" class="default-sayhi">打招呼</div>
+                                    </span>
                                 </div>
                             </div>
                             <div data-v-7b4fded4="" class="recommend-item f-fl item-bottom-border">
                                 <img data-v-7b4fded4="" src="../css/g_1.jpg" class="f-fl" />
                                 <div data-v-7b4fded4="" class="f-fl">
                                     <div data-v-7b4fded4="" class="f-cl">
-                                        <p data-v-7b4fded4="" class="nickname f-fl">åå°è±</p>
+                                        <p data-v-7b4fded4="" class="nickname f-fl">刘小花</p>
                                         <div data-v-7b4fded4="" class="tags f-fl"></div>
                                     </div>
-                                    <p data-v-7b4fded4="" class="condition f-cl">23å² | åå°æ»¨ | 160cm | 160cm</p>
-                                    <p data-v-7b4fded4="" class="heart-word">ææ­£å¨å¯»æ¾é»é¾æ±åå°æ»¨åå²åº,å¹´é¾å¨19-33å²,æèªå¨5000åä»¥ä¸,çç·æ§</p>
+                                    <p data-v-7b4fded4="" class="condition f-cl">23岁 | 哈尔滨 | 160cm | 160cm</p>
+                                    <p data-v-7b4fded4="" class="heart-word">我正在寻找黑龙江哈尔滨南岗区,年龄在19-33岁,月薪在5000元以上,的男性</p>
                                     <span data-v-7b4fded4="" class="f-cl">
-                                        <div data-v-7b4fded4="" class="default-sayhi">ææå¼</div></span>
+                                        <div data-v-7b4fded4="" class="default-sayhi">打招呼</div>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -74,10 +76,10 @@
                             <div class="profile-top f-cl" data-v-77726eec="">
                                 <img src="../css/avatar.png" class="f-fl" data-v-77726eec="" />
                                 <div class="profile-box f-fl" data-v-77726eec="">
-                                    <p class="nick-name f-fl" data-v-77726eec="">ä¼å1633918376</p>
+                                    <p class="nick-name f-fl" data-v-77726eec="">会员1633918376</p>
                                     <p class="member-id f-cl" data-v-77726eec="">ID:1633918376</p>
                                     <div class="profile-view" data-v-77726eec="">
-                                        <a href="my_base_info.html" class="span-purple" data-v-77726eec="">å®åèµæ</a>
+                                        <a href="my_base_info.html" class="span-purple" data-v-77726eec="">完善资料</a>
                                     </div>
                                 </div>
                             </div>
@@ -87,8 +89,5 @@
             </div>
         </div>
         <script src='../js/jquery-1.8.3.min.js'></script>
-        <script>
-        </script>
     </body>
-
 </html>

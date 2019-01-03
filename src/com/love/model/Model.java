@@ -97,36 +97,52 @@ public class Model{
 		if (this._fields.equals("")) {
 			this.fields("*");
 		}
-		String str = "SELECT " + this._fields + " FROM " + this.tableName;
+		this.sql = "SELECT " + this._fields + " FROM " + this.tableName;
 		if (!this._join.equals("")) {
-			str += " " + this._join;
+			this.sql += " " + this._join;
 		}
 		if (!this._where.equals("")) {
-			str += " " + this._where;
+			this.sql += " " + this._where;
 		}
 		if (!this._group.equals("")) {
-			str += " " + this._group;
+			this.sql += " " + this._group;
 		}
 		if (!this._order.equals("")) {
-			str += " " + this._order;
+			this.sql += " " + this._order;
 		}
 		if (!this._limit.equals("")) {
-			str += " " + this._limit;
+			this.sql += " " + this._limit;
 		}
 		this.clean();
-		return str + ";";
+		return this.sql + ";";
 	}
 	
 	//获取单条记录方法
 	public Map get() {
-		this.sql = this.limit(1).getQueryString();
-		return dao.queryOne(this.sql);
+		return dao.queryOne(this.limit(1).getQueryString());
 	}
 	
 	//多条记录的方法
 	public List getAll() {
-		this.sql = this.getQueryString();
-		return dao.query(this.sql);
+		return dao.query(this.getQueryString());
+	}
+	
+	public int count(String field) {
+		this.sql = "SELECT count(`" + field + "`) field_count FROM " + this.tableName;
+		if (!this._join.equals("")) {
+			this.sql += " " + this._join;
+		}
+		if (!this._where.equals("")) {
+			this.sql += " " + this._where;
+		}
+		if (!this._group.equals("")) {
+			this.sql += " " + this._group;
+		}
+		this.limit(1);
+		this.sql += " " + this._limit + ";";
+		this.clean();
+		Map result = dao.queryOne(this.sql);
+		return Integer.valueOf((String) result.get("field_count"));
 	}
 	
 	//获取传递的map中的列名

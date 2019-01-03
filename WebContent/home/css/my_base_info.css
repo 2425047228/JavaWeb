@@ -562,3 +562,5 @@ to{opacity:1;right:62px
 	opacity: 0;
 	transform: translate(-50%, -100%);
 }
+.ZA-RADIO{display:inline-block;line-height:40px;cursor:pointer}
+.ZA-RADIO+.ZA-RADIO{margin-left:20px}
