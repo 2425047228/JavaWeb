@@ -16,6 +16,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.love.util.DateUtil;
+import com.love.util.Utils;
 
 /**
  * Servlet implementation class upload
@@ -82,7 +83,7 @@ public class upload extends HttpServlet {
         upload.setHeaderEncoding("UTF-8"); 
         // 构造临时路径来存储上传的文件
         // 这个路径相对当前应用的目录
-        String uploadPath = getServletContext().getRealPath("/") + File.separator + UPLOAD_DIRECTORY + DateUtil.timeStamp2Date(null, null);
+        String uploadPath = getServletContext().getRealPath("/") + UPLOAD_DIRECTORY + DateUtil.timeStamp2Date(null, null);
         
         // 如果目录不存在则创建
         File uploadDir = new File(uploadPath);
@@ -101,10 +102,11 @@ public class upload extends HttpServlet {
                 //for (FileItem item : formItems) {
                     // 处理不在表单中的字段
                     if (!item.isFormField()) {
-                    	System.out.println("item.getName():" + item.getName());
-                        String fileName = new File(item.getName()).getName();
+                        String fileName = item.getName();
                         String ext = fileName.substring(fileName.lastIndexOf("."));
                         String filePath = uploadPath + File.separator + String.valueOf(System.currentTimeMillis()) + ext;
+                        filePath = filePath.replaceAll("\\", "/");
+                        System.out.println(filePath);
                         File storeFile = new File(filePath);
                         // 在控制台输出文件的上传路径
                         System.out.println(filePath);
@@ -118,8 +120,7 @@ public class upload extends HttpServlet {
             request.setAttribute("message","错误信息: " + ex.getMessage());
         }
         // 跳转到 message.jsp
-        getServletContext().getRequestDispatcher("/album.jsp").forward(request, response);
-		doGet(request, response);
+        response.sendRedirect(Utils.dir + "home/main/album.jsp");
 	}
 
 }

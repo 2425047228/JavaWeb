@@ -107,7 +107,9 @@
                                     <div data-v-33e4e2a4="" data-v-c94da60e="" class="f-fl">
                                         <span data-v-6de725fd="" data-v-33e4e2a4="" class="upload-box" data-v-c94da60e="">
                                             <div data-v-33e4e2a4="" data-v-6de725fd="" class="upload file-upload-container">
-                                                <input class="file-upload" type="file" accept="image/jpeg,image/jpg,image/png,image/gif">
+                                                <form id="upload-photo" method="post" action="upload" enctype="multipart/form-data">
+                                                    <input id="upload-photo-file" class="file-upload" name="album" type="file" accept="image/jpeg,image/jpg,image/png,image/gif">
+                                                </form>
                                             </div>
                                         </span>
                                     </div>
@@ -122,7 +124,9 @@
         <script src='../js/jquery-1.8.3.min.js'></script>
         <script>
             $(function() {
-            	
+            	$("#upload-photo-file").change(function () {
+            		$("#upload-photo").submit();
+            	});
             });
         </script>
     </body>
