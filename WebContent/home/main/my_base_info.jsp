@@ -80,7 +80,9 @@
                             <div data-v-813ab9b4="" class="right-mail f-fl">
                                 <div data-v-813ab9b4="" class="mail-icon">
                                     <a href="mail.html"><img data-v-813ab9b4="" src="../css/message.png"/></a>
-                                    <%= mail_count > 0 ? "<span data-v-813ab9b4=\"\" class=\"right-count\">" + mail_count + "</span>" : "" %>
+                                    <% if (mail_count > 0) { %>
+                                        <span data-v-813ab9b4="" class="right-count"><%= mail_count %></span>
+                                    <% } %>
                                 </div>
                             </div>
                             <div data-v-813ab9b4="" class="right-me f-fl">

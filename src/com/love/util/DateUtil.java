@@ -11,10 +11,12 @@ public class DateUtil {
      * @return 
      */  
     public static String timeStamp2Date(String seconds,String format) {  
-        if(seconds == null || seconds.isEmpty() || seconds.equals("null")){  
-            return "";  
+        if(null == seconds || seconds.isEmpty() || seconds.equals("null")){  
+            seconds = String.valueOf(System.currentTimeMillis() / 1000); 
+        }
+        if(null == format || format.isEmpty()) {
+        	format = "yyyy-MM-dd";
         }  
-        if(format == null || format.isEmpty()) format = "yyyy-MM-dd HH:mm:ss";  
         SimpleDateFormat sdf = new SimpleDateFormat(format);  
         return sdf.format(new Date(Long.valueOf(seconds+"000")));  
     }  
