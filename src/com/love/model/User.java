@@ -45,6 +45,7 @@ public final class User extends Model {
 	public boolean register(Map map) {
 		String reg_time = String.valueOf(DateUtil.timeStamp());
 		String salt = Utils.getRandomString(64);
+		map.put("for_sex", map.get("sex").equals("1") ? "2" : "1");
 		map.put("salt", salt);
 		map.put("reg_time", reg_time);
 		map.put("pwd", MD5.encode(map.get("pwd") + salt + reg_time));
@@ -52,9 +53,10 @@ public final class User extends Model {
 	}
 	
 	public int modify(Map map) {
-		String where = "id = '" + map.get("id") + "'";
+		String where = "id = '" + map.get("id") + "'"
+		,      pwd = (String) map.get("pwd");
 		map.remove("id");
-		if (map.get("pwd").equals("")) {
+		if (null == pwd || pwd.equals("")) {
 			map.remove("pwd");
 		} else {
 			Map data = this.fields("salt, reg_time").where(where).get();

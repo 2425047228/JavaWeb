@@ -56,7 +56,6 @@ public class HomeSignFilter implements Filter {
 		for (int i = 0;i < len;++i) {
 			if (cookies[i].getName().equals("token")) {
 				token = cookies[i].getValue();
-				System.out.println(token);
 				break;
 			}
 		}
@@ -64,7 +63,7 @@ public class HomeSignFilter implements Filter {
 			Map sign = JWT.parse(token);
 			if (!sign.isEmpty()) {
 				HttpServletResponse hsp = (HttpServletResponse) response;
-				hsp.sendRedirect(Utils.dir + "home/main/index.html");
+				hsp.sendRedirect(Utils.dir + "home/main/index.jsp");
 			}
 		}
 		// pass the request along the filter chain

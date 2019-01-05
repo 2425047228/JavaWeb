@@ -102,8 +102,8 @@
                         </div>
                         <div class="nav" data-v-8dc533f6="">
                             <a href="javascript:;" class="nav-item active" data-v-8dc533f6="">个人资料</a>
-                            <a href="seek.html" class="nav-item" data-v-8dc533f6="">择偶条件</a>
-                            <a href="album.html" class="nav-item" data-v-8dc533f6="">我的相册</a>
+                            <a href="seek.jsp" class="nav-item" data-v-8dc533f6="">择偶条件</a>
+                            <a href="album.jsp" class="nav-item" data-v-8dc533f6="">我的相册</a>
                         </div>
                     </div>
                 </div>
@@ -169,7 +169,7 @@
                                     <div class="form-item f-cl" data-v-16a2994a="">
                                         <div class="label f-fl" data-v-16a2994a="">身高</div>
                                         <div class="ZA-INPUT" style="display:inline-block;width:270px;" data-v-16a2994a="">
-                                            <input name="height" placeholder="单位：cm" maxlength="20" type="number" value="<%= data.get("height") %>" required/>
+                                            <input name="height" placeholder="单位：cm" maxlength="3" type="number" value="<%= data.get("height") %>" required/>
                                         </div>
                                     </div>
                                 </div>
