@@ -75,11 +75,14 @@
             <div class="top-bar overflow-div bg-purple" style="position:fixed;" data-v-813ab9b4="" data-v-09c8f4cc="">
                 <div class="CONTAINER primary" data-v-813ab9b4="">
                     <img src="../css/logo.28b54ad-2.png" class="f-fl" data-v-813ab9b4="" />
+                    <div data-v-813ab9b4="" class="link-data f-fl">
+                        <a href="index.jsp" data-v-813ab9b4="">我的珍爱</a>
+                    </div>
                     <div class="right-part f-fr part-margin-left" data-v-813ab9b4="">
                         <div data-v-813ab9b4="" class="is-login f-cl">
                             <div data-v-813ab9b4="" class="right-mail f-fl">
                                 <div data-v-813ab9b4="" class="mail-icon">
-                                    <a href="mail.html"><img data-v-813ab9b4="" src="../css/message.png"/></a>
+                                    <a href="mail.jsp"><img data-v-813ab9b4="" src="../css/message.png"/></a>
                                     <% if (mail_count > 0) { %>
                                         <span data-v-813ab9b4="" class="right-count"><%= mail_count %></span>
                                     <% } %>
@@ -99,7 +102,7 @@
                 <div class="CONTAINER f-fl" style="width:250px;" data-v-09c8f4cc="">
                     <div class="USER-INFO-NAV" data-v-8dc533f6="" data-v-09c8f4cc="">
                         <div class="baseInfo" data-v-8dc533f6="">
-                            <img src="<%= data.get("avatar").equals("") ? "../css/avatar.png" : "" %>" class="logo" style="width:220px;height:220px;"/>
+                            <img src="<%= data.get("avatar").equals("") ? "../css/avatar.png" : Utils.path + data.get("avatar") %>" class="logo" style="width:220px;height:220px;"/>
                             <p class="name" data-v-8dc533f6=""><%= data.get("name") %></p>
                         </div>
                         <div class="nav" data-v-8dc533f6="">

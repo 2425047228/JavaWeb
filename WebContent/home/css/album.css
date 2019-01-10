@@ -21,8 +21,7 @@ body{background:#fafafa
 }
 .top-bar .link-data[data-v-813ab9b4]{height:80px;line-height:80px;font-size:16px;font-weight:500;color:#fff
 }
-.top-bar .link-data span[data-v-813ab9b4]{cursor:pointer;margin-right:52px
-}
+.top-bar .link-data span[data-v-813ab9b4],.top-bar .link-data a[data-v-813ab9b4]{color:#fff;cursor:pointer;margin-right:52px}
 .top-bar .link-data .current-active[data-v-813ab9b4]{position:relative
 }
 .top-bar .link-data .current-active[data-v-813ab9b4]:after{content:"";position:absolute;left:50%;-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%);bottom:-18px;width:30px;height:3px;background:#fff;border-radius:2px
@@ -285,7 +284,7 @@ to{opacity:1;right:62px
 }
 .m-album-box .album-item span[data-v-33e4e2a4]{position:absolute;font-weight:100;width:100%;height:30px;line-height:30px;text-align:center;background:rgba(0,0,0,.35);color:#fff;left:0;bottom:0
 }
-.m-album-box .album-item i[data-v-33e4e2a4]{position:absolute;top:-10px;right:-10px;display:block;width:20px;height:20px;background:url(close.98cc252.png) no-repeat;background-size:100% 100%;cursor:pointer
+.m-album-box .album-item i[data-v-33e4e2a4], .m-album-box .album-item a[data-v-33e4e2a4]{position:absolute;top:-10px;right:-10px;display:block;width:20px;height:20px;background:url(close.98cc252.png) no-repeat;background-size:100% 100%;cursor:pointer
 }
 .m-album-box .upload[data-v-33e4e2a4]{position:relative;width:120px;height:120px;background:url(upload.019d207.png) no-repeat;background-size:100% 100%
 }

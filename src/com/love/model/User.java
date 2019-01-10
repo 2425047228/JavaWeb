@@ -64,4 +64,40 @@ public final class User extends Model {
 		}
 		return this.where(where).update(map);
 	}
+	
+	public int uploadAvatar(String id, String path) {
+		Map<String, String> map = new HashMap();
+		map.put("avatar", path);
+		return this.where("id = '" + id + "'").update(map);
+	}
+	
+	public String sex(int code) {
+		//0-不限,1-男,2-女
+		if (code > 2 || code < 0) {
+			return "";
+		} else {
+			String[] array = {"不限", "男", "女"};
+			return array[code];
+		}
+	}
+	
+	public String edu(int code) {
+		//0-不限,1-高中及以下,2-中专,3-大专,4-大学本科,5-硕士,6-博士
+		if (code > 2 || code < 0) {
+			return "";
+		} else {
+			String[] array = {"不限", "高中及以下", "中专", "大专", "大学本科", "硕士", "博士"};
+			return array[code];
+		}
+	}
+	
+	public String marital(int code) {
+		//0-不限,1-未婚,2-离婚,3-丧偶
+		if (code > 2 || code < 0) {
+			return "";
+		} else {
+			String[] array = {"不限", "未婚", "离婚", "丧偶"};
+			return array[code];
+		}
+	}
 }

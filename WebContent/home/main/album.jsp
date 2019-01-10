@@ -2,11 +2,15 @@
 <%@ page import="java.io.*,java.util.*,com.love.model.*,com.love.util.DateUtil,com.love.util.Utils" %>
 <%
     String id = request.getAttribute("id").toString();
+    String photo_id = request.getParameter("photo_id");
+    Album album = new Album();
+    if (Utils.isNumeric(photo_id)) {
+    	album.del(id, photo_id);
+    }
     User user = new User();
     Mail mail = new Mail();
-    Album album = new Album();
     Map data = user.where("id = '" + id + "'").get();
-    String avatar = data.get("avatar").equals("") ? "../css/avatar.png" : "";
+    String avatar = data.get("avatar").equals("") ? "../css/avatar.png" : Utils.path + data.get("avatar");
     int mail_count = mail.getCountByUid(id);
     List photos = album.getPhotosByUid(id);
     Map photo;
@@ -39,11 +43,14 @@
             <div class="top-bar overflow-div bg-purple" style="position:fixed;" data-v-813ab9b4="" data-v-f806c9bc="">
                 <div class="CONTAINER primary" data-v-813ab9b4="">
                     <img src="../css/logo.28b54ad-2.png" class="f-fl" data-v-813ab9b4="">
+                    <div data-v-813ab9b4="" class="link-data f-fl">
+                        <a href="index.jsp" data-v-813ab9b4="">我的珍爱</a>
+                    </div>
                     <div class="right-part f-fr part-margin-left" data-v-813ab9b4="">
                         <div data-v-813ab9b4="" class="is-login f-cl">
                             <div data-v-813ab9b4="" class="right-mail f-fl">
                                 <div data-v-813ab9b4="" class="mail-icon">
-                                    <a href="mail.html"><img data-v-813ab9b4="" src="../css/message.png"/></a>
+                                    <a href="mail.jsp"><img data-v-813ab9b4="" src="../css/message.png"/></a>
                                     <% if (mail_count > 0) { %>
                                         <span data-v-813ab9b4="" class="right-count"><%= mail_count %></span>
                                     <% } %>
@@ -85,7 +92,9 @@
                                     <div data-v-33e4e2a4="" class="BTN f-fl" data-v-c94da60e="" style="width: 130px; margin-left: 20px;">
                                         <div class="BTN-box primary file-upload-container">
                                                                                                                                      更换头像
-                                            <input class="file-upload" type="file" accept="image/jpeg,image/jpg,image/png,image/gif">
+                                            <form id="upload-avatar" method="post" action="upload" enctype="multipart/form-data">
+                                                <input id="upload-avatar-file" class="file-upload" name="avatar" type="file" accept="image/jpeg,image/jpg,image/png,image/gif">
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -99,8 +108,8 @@
                                             photo = (Map) photos.get(i);
                                     %>
                                         <div data-v-33e4e2a4="" data-v-c94da60e="" class="album-item f-fl">
-                                            <img data-v-33e4e2a4="" data-v-c94da60e="" src="<%= photo.get("path") %>">
-                                            <i data-v-33e4e2a4="" data-v-c94da60e="" data-id="<%= photo.get("id") %>"></i>
+                                            <img data-v-33e4e2a4="" data-v-c94da60e="" src="<%= Utils.path + photo.get("path") %>">
+                                            <a href="album.jsp?photo_id=<%= photo.get("id") %>" data-v-33e4e2a4="" data-v-c94da60e=""></a>
                                         </div>
                                     <% } %>
                                     <% if (size < 6) { %>
@@ -126,6 +135,9 @@
             $(function() {
             	$("#upload-photo-file").change(function () {
             		$("#upload-photo").submit();
+            	});
+            	$("#upload-avatar-file").change(function () {
+            		$("#upload-avatar").submit();
             	});
             });
         </script>

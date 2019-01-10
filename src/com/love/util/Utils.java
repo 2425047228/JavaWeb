@@ -5,15 +5,21 @@ import java.util.Random;
 
 public class Utils {
 	public static final String dir = "/LoveAffair/";
+	public static final String path = "/LoveAffair";
 	
 	public static boolean isNumeric(String str)
 	{
-		for (int i = 0; i < str.length(); i++) {
-			if (!Character.isDigit(str.charAt(i))) {
-				return false;
+		if (null == str) {
+			return false;
+		} else {
+			int len = str.length();
+			for (int i = 0; i < len; i++) {
+				if (!Character.isDigit(str.charAt(i))) {
+					return false;
+				}
 			}
+			return true;
 		}
-		return true;
 	}
 	
     public static String getRandomString(int len){
@@ -36,5 +42,35 @@ public class Utils {
     
     public static String iso2utf8(String value) throws UnsupportedEncodingException {
     	return new String(value.getBytes("ISO-8859-1"), "UTF-8");
+    }
+    
+    
+    public static long getBirthdayByAge(int age) {
+    	int year = Integer.valueOf(DateUtil.timeStamp2Date(null, "yyyy"));
+    	year = year - age;
+    	String md = DateUtil.timeStamp2Date(null, "-MM-dd");
+    	return DateUtil.date2TimeStamp(String.valueOf(year) + md, null);
+    }
+    
+    public static int getAgeByBirthday(long birthday) {
+    	String timeStamp = String.valueOf(System.currentTimeMillis() / 1000);
+    	String timeStamp2 = String.valueOf(birthday);
+    	
+    	int y = Integer.valueOf(DateUtil.timeStamp2Date(timeStamp, "yyyy"));
+    	int m = Integer.valueOf(DateUtil.timeStamp2Date(timeStamp, "MM"));
+    	int d = Integer.valueOf(DateUtil.timeStamp2Date(timeStamp, "dd"));
+    	
+    	int y2 = Integer.valueOf(DateUtil.timeStamp2Date(timeStamp2, "yyyy"));
+    	int m2 = Integer.valueOf(DateUtil.timeStamp2Date(timeStamp2, "MM"));
+    	int d2 = Integer.valueOf(DateUtil.timeStamp2Date(timeStamp2, "dd"));
+    	
+    	int age = y - y2;
+    	if (m < m2) {
+    		age -= 1;
+    	} else if (m <= m2 && d < d2) {
+    		age -= 1;
+    	}
+    	
+    	return age;
     }
 }
