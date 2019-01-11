@@ -15,7 +15,7 @@
     }
     List<Map> mails = mail.getMails(id);
     Map<String, String> data = user.where("id = '" + id + "'").get();
-    String avatar = data.get("avatar").equals("") ? "../css/avatar.png" : Utils.path + data.get("avatar");
+    String avatar = data.get("avatar").equals("") ? "../css/avatar.png" : Utils.getResourcePath(data.get("avatar"));
     int mail_count = mail.getCountByUid(id);
     int size = mails.size();
     Map<String, String> item;
@@ -74,7 +74,7 @@
                                                                 <div 
                                                                     data-v-ccf50200="" 
                                                                     class="avatar f-fl" 
-                                                                    style="background-image:url(<%= item.get("avatar").equals("") ? "../css/avatar.png" : Utils.path + item.get("avatar") %>);"
+                                                                    style="background-image:url(<%= item.get("avatar").equals("") ? "../css/avatar.png" : Utils.getResourcePath(item.get("avatar")) %>);"
                                                                 ></div>
                                                                 <div data-v-ccf50200="" class="info f-fl">
                                                                     <div data-v-ccf50200="" class="name">

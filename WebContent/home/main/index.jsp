@@ -9,7 +9,7 @@
     	mail.sayHi(id, uid);
     }
     Map<String, String> data = user.where("id = '" + id + "'").get();
-    String avatar = data.get("avatar").equals("") ? "../css/avatar.png" : Utils.path + data.get("avatar");
+    String avatar = data.get("avatar").equals("") ? "../css/avatar.png" : Utils.getResourcePath(data.get("avatar"));
     int mail_count = mail.getCountByUid(id);
     List<Map> list = user.getUsers(data);
     int size = list.size();
@@ -66,7 +66,7 @@
                                 <% for (int i = 0;i < size;++i) { %>
                                     <% item = list.get(i); %>
                                     <div data-v-7b4fded4="" class="recommend-item f-fl item-bottom-border">
-                                        <img data-v-7b4fded4="" src="<%= Utils.path + item.get("avatar") %>" class="f-fl" />
+                                        <img data-v-7b4fded4="" src="<%= Utils.getResourcePath(item.get("avatar")) %>" class="f-fl" />
                                         <div data-v-7b4fded4="" class="f-fl">
                                             <div data-v-7b4fded4="" class="f-cl">
                                                 <p data-v-7b4fded4="" class="nickname f-fl"><%= item.get("name") %></p>

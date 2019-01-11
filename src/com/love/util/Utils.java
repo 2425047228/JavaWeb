@@ -7,6 +7,14 @@ public class Utils {
 	public static final String dir = "/LoveAffair/";
 	public static final String path = "/LoveAffair";
 	
+	public static String getResourcePath(String uploadPath) {
+		if (null == uploadPath) {
+			return "";
+		} else {
+			return path + uploadPath;
+		}
+	}
+	
 	public static boolean isNumeric(String str)
 	{
 		if (null == str) {
@@ -73,4 +81,5 @@ public class Utils {
     	
     	return age;
     }
+    
 }

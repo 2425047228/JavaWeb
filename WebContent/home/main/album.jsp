@@ -9,11 +9,11 @@
     }
     User user = new User();
     Mail mail = new Mail();
-    Map data = user.where("id = '" + id + "'").get();
-    String avatar = data.get("avatar").equals("") ? "../css/avatar.png" : Utils.path + data.get("avatar");
+    Map<String, String> data = user.where("id = '" + id + "'").get();
+    String avatar = data.get("avatar").equals("") ? "../css/avatar.png" : Utils.getResourcePath(data.get("avatar"));
     int mail_count = mail.getCountByUid(id);
     List photos = album.getPhotosByUid(id);
-    Map photo;
+    Map<String, String> photo;
     int size = photos.size();
     user.close();
 %>
@@ -108,7 +108,7 @@
                                             photo = (Map) photos.get(i);
                                     %>
                                         <div data-v-33e4e2a4="" data-v-c94da60e="" class="album-item f-fl">
-                                            <img data-v-33e4e2a4="" data-v-c94da60e="" src="<%= Utils.path + photo.get("path") %>">
+                                            <img data-v-33e4e2a4="" data-v-c94da60e="" src="<%= Utils.getResourcePath(photo.get("path")) %>">
                                             <a href="album.jsp?photo_id=<%= photo.get("id") %>" data-v-33e4e2a4="" data-v-c94da60e=""></a>
                                         </div>
                                     <% } %>
