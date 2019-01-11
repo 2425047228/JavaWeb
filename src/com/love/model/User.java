@@ -1,6 +1,8 @@
 package com.love.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.love.util.DateUtil;
@@ -83,7 +85,7 @@ public final class User extends Model {
 	
 	public String edu(int code) {
 		//0-不限,1-高中及以下,2-中专,3-大专,4-大学本科,5-硕士,6-博士
-		if (code > 2 || code < 0) {
+		if (code > 6 || code < 0) {
 			return "";
 		} else {
 			String[] array = {"不限", "高中及以下", "中专", "大专", "大学本科", "硕士", "博士"};
@@ -93,11 +95,48 @@ public final class User extends Model {
 	
 	public String marital(int code) {
 		//0-不限,1-未婚,2-离婚,3-丧偶
-		if (code > 2 || code < 0) {
+		if (code > 3 || code < 0) {
 			return "";
 		} else {
 			String[] array = {"不限", "未婚", "离婚", "丧偶"};
 			return array[code];
 		}
+	}
+	
+	//通过用户的择偶标准匹配用户列表
+	public List getUsers(Map<String, String> user) {
+		String where = "user.id <> '" + user.get("id") + "' AND user.avatar <> ''";
+	    if (!user.get("for_sex").equals("0")) {    //性取向
+	    	where += " AND user.sex = '" + user.get("for_sex") + "'";
+	    }
+	    if (!user.get("for_edu").equals("0")) {    //学历
+	    	where += " AND user.edu = '" + user.get("for_edu") + "'";
+	    }
+	    if (!user.get("for_marital").equals("0")) {    //婚姻状态
+	    	where += " AND user.marital = '" + user.get("for_marital") + "'";
+	    }
+	    String min_age = user.get("min_age");
+	    if (!min_age.equals("0")) {    //最小年龄
+	    	String min_birthday = String.valueOf( Utils.getBirthdayByAge( Integer.valueOf( min_age ) ) );
+	    	where += " AND user.birthday <= '" + min_birthday + "'";
+	    }
+	    String max_age = user.get("max_age");
+	    if (!max_age.equals("0")) {    //最大年龄
+	    	String max_birthday = String.valueOf( Utils.getBirthdayByAge( Integer.valueOf( max_age ) ) );
+	    	where += " AND user.birthday >= '" + max_birthday + "'";
+	    }
+	    if (!user.get("min_height").equals("0")) {    //最低身高
+	    	where += " AND user.height >= '" + user.get("min_height") + "'";
+	    }
+	    if (!user.get("max_height").equals("0")) {    //最高身高
+	    	where += " AND user.height <= '" + user.get("max_height") + "'";
+	    }
+	    if (!user.get("min_income").equals("0")) {    //最低收入
+	    	where += " AND user.income >= '" + user.get("min_income") + "'";
+	    }
+	    if (!user.get("max_income").equals("0")) {    //最高收入
+	    	where += " AND user.income <= '" + user.get("max_income") + "'";
+	    }
+	    return this.fields("user.*, mail.from_uid").leftJoin("mail on mail.uid = user.id AND from_uid = '" + user.get("id") + "'").where(where).getAll();
 	}
 }

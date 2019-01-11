@@ -281,7 +281,7 @@ to{opacity:1;right:62px
 }
 .m-recommend .recommend-content .recommend-item .default-sayhi[data-v-7b4fded4]:hover:before{background:url(has-sayhi.68033e5.png) no-repeat
 }
-.m-recommend .recommend-content .recommend-item .has-sayhi[data-v-7b4fded4]{cursor:pointer;padding-left:98px;position:relative;width:227px;height:36px;background:#d8d8d8;border-radius:4px;font-size:14px;font-family:PingFangSC-Medium;font-weight:500;color:#fff;line-height:36px
+.m-recommend .recommend-content .recommend-item .has-sayhi[data-v-7b4fded4]{display:block;cursor:pointer;padding-left:98px;position:relative;width:227px;height:36px;background:#d8d8d8;border-radius:4px;font-size:14px;font-family:PingFangSC-Medium;font-weight:500;color:#fff;line-height:36px
 }
 .m-recommend .recommend-content .recommend-item .has-sayhi[data-v-7b4fded4]:before{content:"";position:absolute;left:72px;top:10px;width:20px;height:18px;background:url(has-sayhi.68033e5.png) no-repeat;background-size:100% 100%
 }

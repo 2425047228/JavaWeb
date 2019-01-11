@@ -2,44 +2,16 @@
 <%@ page import="java.io.*,java.util.*,com.love.model.*,com.love.util.DateUtil,com.love.util.Utils" %>
 <%
     String id = request.getAttribute("id").toString();
+    String uid = request.getParameter("uid");
     User user = new User();
     Mail mail = new Mail();
+    if (Utils.isNumeric(uid)) {
+    	mail.sayHi(id, uid);
+    }
     Map<String, String> data = user.where("id = '" + id + "'").get();
     String avatar = data.get("avatar").equals("") ? "../css/avatar.png" : Utils.path + data.get("avatar");
     int mail_count = mail.getCountByUid(id);
-    String where = "id <> '" + id + "' AND avatar <> ''";
-    if (!data.get("for_sex").equals("0")) {    //性取向
-    	where += " AND sex = '" + data.get("for_sex") + "'";
-    }
-    if (!data.get("for_edu").equals("0")) {    //学历
-    	where += " AND edu = '" + data.get("for_edu") + "'";
-    }
-    if (!data.get("for_marital").equals("0")) {    //婚姻状态
-    	where += " AND marital = '" + data.get("for_marital") + "'";
-    }
-    String min_age = data.get("min_age");
-    if (!min_age.equals("0")) {    //最小年龄
-    	String min_birthday = String.valueOf( Utils.getBirthdayByAge( Integer.valueOf( min_age ) ) );
-    	where += " AND birthday <= '" + min_birthday + "'";
-    }
-    String max_age = data.get("max_age");
-    if (!max_age.equals("0")) {    //最大年龄
-    	String max_birthday = String.valueOf( Utils.getBirthdayByAge( Integer.valueOf( max_age ) ) );
-    	where += " AND birthday >= '" + max_birthday + "'";
-    }
-    if (!data.get("min_height").equals("0")) {    //最低身高
-    	where += " AND height >= '" + data.get("min_height") + "'";
-    }
-    if (!data.get("max_height").equals("0")) {    //最高身高
-    	where += " AND height <= '" + data.get("max_height") + "'";
-    }
-    if (!data.get("min_income").equals("0")) {    //最低收入
-    	where += " AND income >= '" + data.get("min_income") + "'";
-    }
-    if (!data.get("max_income").equals("0")) {    //最高收入
-    	where += " AND income <= '" + data.get("max_income") + "'";
-    }
-    List<Map> list = user.where(where).getAll();
+    List<Map> list = user.getUsers(data);
     int size = list.size();
     Map<String, String> item;
     user.close();
@@ -108,7 +80,11 @@
                                                                                                                                                 婚姻状况<%=user.marital(Integer.valueOf(item.get("for_marital"))) %>的人
                                             </p>
                                             <span data-v-7b4fded4="" class="f-cl">
-                                                <a href="index.jsp?id=<%= item.get("id") %>" data-v-7b4fded4="" class="default-sayhi">打招呼</a>
+                                                <% if (Utils.isNumeric(item.get("from_uid"))) { %>
+                                                    <span data-v-7b4fded4="" class="has-sayhi">打招呼</span>
+                                                <% } else { %>
+                                                    <a href="index.jsp?uid=<%= item.get("id") %>" data-v-7b4fded4="" class="default-sayhi">打招呼</a>
+                                                <% } %>
                                             </span>
                                         </div>
                                     </div>

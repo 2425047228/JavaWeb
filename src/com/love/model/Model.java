@@ -9,6 +9,7 @@ public class Model{
 	protected DAO dao = DAO.getInstance();
 	protected String prefix = "";    //数据表名前缀
 	protected String tableName = "";
+	protected String as = "";
 	protected String sql = "";
 	protected String _fields = "";
 	protected String _join = "";
@@ -26,6 +27,13 @@ public class Model{
 	
 	public Model fields(String fields) {
 		this._fields = fields;
+		return this;
+	}
+	
+	public Model as(String as) {
+		if (null != as) {
+			this.as = as;
+		}
 		return this;
 	}
 	
@@ -84,6 +92,7 @@ public class Model{
 	
 	//清空暂存操作
 	protected void clean() {
+		this.as = "";
 		this._fields = "";
 		this._join = "";
 		this._where = "";
@@ -98,6 +107,10 @@ public class Model{
 			this.fields("*");
 		}
 		this.sql = "SELECT " + this._fields + " FROM " + this.tableName;
+		
+		if (!this.as.equals("")) {
+			this.sql += " " + this.as;
+		}
 		if (!this._join.equals("")) {
 			this.sql += " " + this._join;
 		}
@@ -129,6 +142,10 @@ public class Model{
 	
 	public int count(String field) {
 		this.sql = "SELECT count(`" + field + "`) field_count FROM " + this.tableName;
+		
+		if (!this.as.equals("")) {
+			this.sql += " " + this.as;
+		}
 		if (!this._join.equals("")) {
 			this.sql += " " + this._join;
 		}
