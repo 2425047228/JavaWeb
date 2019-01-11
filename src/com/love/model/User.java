@@ -73,6 +73,48 @@ public final class User extends Model {
 		return this.where("id = '" + id + "'").update(map);
 	}
 	
+	public String forAge(String min_age, String max_age) {
+		if (min_age.equals("0") && max_age.equals("0")) {
+			return "不限";
+		} else if (min_age.equals("0")) {
+			return max_age + "岁以下";
+		} else if (max_age.equals("0")) {
+			return min_age + "岁以上";
+		} else if (min_age.equals(max_age)) {
+			return min_age + "岁";
+		} else {
+			return min_age + "-" + max_age + "岁";
+		}
+	}
+	
+	public String forHeight(String min_height, String max_height) {
+		if (min_height.equals("0") && max_height.equals("0")) {
+			return "不限";
+		} else if (min_height.equals("0")) {
+			return max_height + "cm以下";
+		} else if (max_height.equals("0")) {
+			return min_height + "cm以上";
+		} else if (min_height.equals(max_height)) {
+			return min_height + "cm";
+		} else {
+			return min_height + "-" + max_height + "cm";
+		}
+	}
+	
+	public String forIncome(String min_income, String max_income) {
+		if (min_income.equals("0") && max_income.equals("0")) {
+			return "不限";
+		} else if (min_income.equals("0")) {
+			return max_income + "元以下";
+		} else if (max_income.equals("0")) {
+			return min_income + "元以上";
+		} else if (min_income.equals(max_income)) {
+			return min_income + "元";
+		} else {
+			return min_income + "-" + max_income + "元";
+		}
+	}
+	
 	public String sex(int code) {
 		//0-不限,1-男,2-女
 		if (code > 2 || code < 0) {
@@ -137,6 +179,6 @@ public final class User extends Model {
 	    if (!user.get("max_income").equals("0")) {    //最高收入
 	    	where += " AND user.income <= '" + user.get("max_income") + "'";
 	    }
-	    return this.fields("user.*, mail.from_uid").leftJoin("mail on mail.uid = user.id AND from_uid = '" + user.get("id") + "'").where(where).getAll();
+	    return this.fields("user.*, mail.from_uid").leftJoin("mail on mail.uid = user.id AND mail.from_uid = '" + user.get("id") + "' AND mail.status <> 0").where(where).getAll();
 	}
 }

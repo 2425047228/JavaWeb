@@ -95,7 +95,7 @@
                 <div class="CONTAINER f-fl" style="width:250px;" data-v-09c8f4cc="">
                     <div class="USER-INFO-NAV" data-v-8dc533f6="" data-v-09c8f4cc="">
                         <div class="baseInfo" data-v-8dc533f6="">
-                            <img src="<%= data.get("avatar").equals("") ? "../css/avatar.png" : Utils.getResourcePath(data.get("avatar")) %>" class="logo" style="width:220px;height:220px;"/>
+                            <img src="<%= data.get("avatar").equals("") ? "../css/avatar.png" : data.get("avatar") %>" class="logo" style="width:220px;height:220px;"/>
                             <p class="name" data-v-8dc533f6=""><%= data.get("name") %></p>
                         </div>
                         <div class="nav" data-v-8dc533f6="">

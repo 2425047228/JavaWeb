@@ -47,7 +47,7 @@ public class logout extends HttpServlet {
 				break;
 			}
 		}
-		response.sendRedirect(Utils.dir + "home/login.html");
+		response.sendRedirect("../login.html");
 	}
 
 	/**

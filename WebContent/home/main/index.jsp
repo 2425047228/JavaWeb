@@ -9,7 +9,7 @@
     	mail.sayHi(id, uid);
     }
     Map<String, String> data = user.where("id = '" + id + "'").get();
-    String avatar = data.get("avatar").equals("") ? "../css/avatar.png" : Utils.getResourcePath(data.get("avatar"));
+    String avatar = data.get("avatar").equals("") ? "../css/avatar.png" : data.get("avatar");
     int mail_count = mail.getCountByUid(id);
     List<Map> list = user.getUsers(data);
     int size = list.size();
@@ -66,19 +66,23 @@
                                 <% for (int i = 0;i < size;++i) { %>
                                     <% item = list.get(i); %>
                                     <div data-v-7b4fded4="" class="recommend-item f-fl item-bottom-border">
-                                        <img data-v-7b4fded4="" src="<%= Utils.getResourcePath(item.get("avatar")) %>" class="f-fl" />
+                                        <a href="user.jsp?id=<%= item.get("id") %>" target="_blank">
+                                            <img data-v-7b4fded4="" src="<%= item.get("avatar") %>" class="f-fl" />
+                                        </a>
                                         <div data-v-7b4fded4="" class="f-fl">
-                                            <div data-v-7b4fded4="" class="f-cl">
-                                                <p data-v-7b4fded4="" class="nickname f-fl"><%= item.get("name") %></p>
-                                                <div data-v-7b4fded4="" class="tags f-fl"></div>
-                                            </div>
-                                            <p data-v-7b4fded4="" class="condition f-cl">
-                                                <%= Utils.getAgeByBirthday(Long.parseLong(item.get("birthday"))) %>岁  | <%= item.get("height") %>cm | <%= item.get("addr") %>
-                                            </p>
-                                            <p data-v-7b4fded4="" class="heart-word">
-                                                                                                                                                我正在寻找学历<%=user.edu(Integer.valueOf(item.get("for_edu"))) %>,
-                                                                                                                                                婚姻状况<%=user.marital(Integer.valueOf(item.get("for_marital"))) %>的人
-                                            </p>
+                                            <a href="user.jsp?id=<%= item.get("id") %>" target="_blank">
+                                                <div data-v-7b4fded4="" class="f-cl">
+                                                    <p data-v-7b4fded4="" class="nickname f-fl"><%= item.get("name") %></p>
+                                                    <div data-v-7b4fded4="" class="tags f-fl"></div>
+                                                </div>
+                                                <p data-v-7b4fded4="" class="condition f-cl">
+                                                    <%= Utils.getAgeByBirthday(Long.parseLong(item.get("birthday"))) %>岁  | <%= item.get("height") %>cm | <%= item.get("addr") %>
+                                                </p>
+                                                <p data-v-7b4fded4="" class="heart-word">
+                                                                                                                                                            我正在寻找学历<%=user.edu(Integer.valueOf(item.get("for_edu"))) %>,
+                                                                                                                                                            婚姻状况<%=user.marital(Integer.valueOf(item.get("for_marital"))) %>的人
+                                                </p>
+                                            </a>
                                             <span data-v-7b4fded4="" class="f-cl">
                                                 <% if (Utils.isNumeric(item.get("from_uid"))) { %>
                                                     <span data-v-7b4fded4="" class="has-sayhi">打招呼</span>

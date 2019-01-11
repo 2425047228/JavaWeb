@@ -126,8 +126,7 @@ public class upload extends HttpServlet {
 				writer.write("上传失败");
 				return;
 			}
-            
-            savePath = (File.separator + savePath + File.separator + saveName).replaceAll("\\\\", "/");
+            savePath = (request.getContextPath() + File.separator + savePath + File.separator + saveName).replaceAll("\\\\", "/");
             String id = (String) request.getAttribute("id");
         	if (fileItem.getFieldName().equals("album")) {
         		Album album = new Album();
@@ -149,7 +148,7 @@ public class upload extends HttpServlet {
         		}
         	}
         }
-        response.sendRedirect(Utils.dir + "home/main/album.jsp");
+        response.sendRedirect("album.jsp");
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.love.filter;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.Filter;
@@ -58,8 +59,11 @@ public class HomeMainFilter implements Filter {
 			if (!sign.isEmpty()) {
 				request.setAttribute("id", sign.get("subject"));
 			} else {
-				HttpServletResponse hsp = (HttpServletResponse) response;
-				hsp.sendRedirect(Utils.dir + "home/login.html");
+				Date expiration = (Date) sign.get("expiration");
+				if (expiration.getTime() < System.currentTimeMillis()) {
+					HttpServletResponse hsp = (HttpServletResponse) response;
+					hsp.sendRedirect("../login.html");
+				}
 			}
 		}
 		// pass the request along the filter chain

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Base64.Encoder;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,8 +63,11 @@ public class HomeSignFilter implements Filter {
 		if (null != token && !token.equals("")) {
 			Map sign = JWT.parse(token);
 			if (!sign.isEmpty()) {
-				HttpServletResponse hsp = (HttpServletResponse) response;
-				hsp.sendRedirect(Utils.dir + "home/main/index.jsp");
+				Date expiration = (Date) sign.get("expiration");
+				if (expiration.getTime() < System.currentTimeMillis()) {
+					HttpServletResponse hsp = (HttpServletResponse) response;
+					hsp.sendRedirect("home/main/index.jsp");
+				}
 			}
 		}
 		// pass the request along the filter chain
