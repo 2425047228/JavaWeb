@@ -9,6 +9,7 @@
     		if (pwd.length() > 0) {
     			Admin admin = new Admin();
     			String id = admin.sign(account, pwd);
+    			admin.close();
     			if (Utils.isNumeric(id)) {
     				long hours = DateUtil.hours(24);
     				String token = JWT.create(id, hours);

@@ -13,6 +13,7 @@
     }
     Admin admin = new Admin();
     Map<String, String> data = admin.getAdminById(id);
+    admin.close();
 %>
 
 <!DOCTYPE html>

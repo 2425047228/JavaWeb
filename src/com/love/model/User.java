@@ -44,6 +44,11 @@ public final class User extends Model {
 		return this.data;
 	}
 	
+	public Map getById(String id) {
+		this.data = this.where("`id` = '" + id + "'").get();
+		return this.data;
+	}
+	
 	public boolean register(Map map) {
 		String reg_time = String.valueOf(DateUtil.timeStamp());
 		String salt = Utils.getRandomString(64);

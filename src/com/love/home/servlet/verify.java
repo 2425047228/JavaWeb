@@ -117,7 +117,7 @@ public class verify extends HttpServlet {
 				writer.write("姓名格式错误");
 			} else if (!sex.equals("1") && !sex.equals("2")) {
 				writer.write("性别错误");
-			} else if (0 == birthday) {
+			} else if (birthday < 1) {
 				writer.write("生日错误");
 			} else if (!marital.equals("1") && !marital.equals("2") && !marital.equals("3")) {
 				writer.write("婚姻状况错误");
