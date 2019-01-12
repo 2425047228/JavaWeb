@@ -104,8 +104,9 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <iframe id="iframe" class="content-wrapper" src="default.jsp" style="min-height: 100%;min-width: 100%;border: none;"></iframe>
-
+  <div class="content-wrapper" id="iframe-container">
+      <iframe id="iframe" src="default.jsp" height="100%" width="100%" frameborder=0></iframe>
+  </div>
 </div>
 
 <script src="../static/js/jquery.min.js"></script>
@@ -120,6 +121,7 @@
     		$(this).addClass('active');
     		$('#iframe').attr('src', $(this).attr('data-href'));
     	});
+    	$('#iframe').attr('height', document.getElementById("iframe-container").scrollHeight + 'px');
     });
 </script>
 </body>
