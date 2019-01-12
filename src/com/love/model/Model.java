@@ -135,6 +135,12 @@ public class Model{
 		return dao.queryOne(this.limit(1).getQueryString());
 	}
 	
+	public String get(String field) {
+		this._fields = field;
+		Map<String, String> map = dao.queryOne(this.limit(1).getQueryString());
+		return map.get(field);
+	}
+	
 	//多条记录的方法
 	public List getAll() {
 		return dao.query(this.getQueryString());

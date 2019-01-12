@@ -64,9 +64,9 @@ public class HomeSignFilter implements Filter {
 			Map sign = JWT.parse(token);
 			if (!sign.isEmpty()) {
 				Date expiration = (Date) sign.get("expiration");
-				if (expiration.getTime() < System.currentTimeMillis()) {
+				if (expiration.getTime() > System.currentTimeMillis()) {
 					HttpServletResponse hsp = (HttpServletResponse) response;
-					hsp.sendRedirect("home/main/index.jsp");
+					hsp.sendRedirect("main/index.jsp");
 				}
 			}
 		}

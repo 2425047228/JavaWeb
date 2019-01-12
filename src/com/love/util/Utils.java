@@ -7,7 +7,7 @@ public class Utils {
 	
 	public static boolean isNumeric(String str)
 	{
-		if (null == str) {
+		if (null == str || str.length() < 1) {
 			return false;
 		} else {
 			int len = str.length();

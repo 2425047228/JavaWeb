@@ -38,15 +38,6 @@ public class logout extends HttpServlet {
 		cookie.setPath("/");
 		cookie.setMaxAge(1);
 		response.addCookie(cookie);
-		Cookie[] cookies = request.getCookies();
-		int len = cookies.length;
-		String token = null;
-		for (int i = 0;i < len;++i) {
-			if (cookies[i].getName().equals("token")) {
-				token = cookies[i].getValue();
-				break;
-			}
-		}
 		response.sendRedirect("../login.html");
 	}
 
