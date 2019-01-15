@@ -68,10 +68,13 @@
 <head>
 <meta charset="UTF-8">
 <title>维护用户信息</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="shortcut icon" href="../static/css/favicon.ico"> 
   <link rel="stylesheet" href="../static/css/bootstrap.min.css">
   <link rel="stylesheet" href="../static/css/font-awesome.min.css">
   <link rel="stylesheet" href="../static/css/ionicons.min.css">
   <link rel="stylesheet" href="../static/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../static/css/skin-blue.min.css">
 </head>
 <body>
 <div class="container-fluid content">
@@ -146,7 +149,7 @@
               <!-- /.box-body -->
               <div class="box-footer">
                 <a href="users.jsp" class="btn btn-default">取消</a>
-                <button type="submit" class="btn btn-info pull-right">提交</button>
+                <button type="submit" class="btn btn-info pull-right">保存</button>
               </div>
               <!-- /.box-footer -->
             </form>

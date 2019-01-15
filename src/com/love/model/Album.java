@@ -8,7 +8,7 @@ import com.love.util.DateUtil;
 
 public final class Album extends Model {
 	public List getPhotosByUid(String uid) {
-		return this.fields("id, path").where("uid = '" + uid + "' AND status = 1").getAll();
+		return this.fields("id, path, upload_time").where("uid = '" + uid + "' AND status = 1").getAll();
 	}
 	
 	public boolean upload(String uid, String path) {
