@@ -13,6 +13,7 @@
     	user.close();
 	    return;
     }
+    String avatar = data.get("avatar").equals("") ? "../static/img/user-avatar.png" : data.get("avatar");
     Album album = new Album();
     String photo_id = request.getParameter("photo_id");
     if (Utils.isNumeric(id)) {
@@ -44,7 +45,7 @@
                     <div class="col-xs-2">
                         <div class="post">
                             <div class="user-block">
-                                <img class="img-circle" src="<%= data.get("avatar") %>">
+                                <img class="img-circle" src="<%= avatar %>">
                                 <span class="username">
                                     <a href="javascript:void(0);"><%= data.get("name") %></a>
                                     <a href="photos.jsp?id=<%= id %>&photo_id=<%= photo.get("id") %>" class="pull-right btn-box-tool">

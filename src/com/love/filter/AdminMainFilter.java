@@ -51,17 +51,24 @@ public class AdminMainFilter implements Filter {
 				break;
 			}
 		}
+		HttpServletResponse hsp = (HttpServletResponse) response;
 		if (null != token) {
 			Map sign = JWT.parse(token);
 			if (!sign.isEmpty()) {
-				request.setAttribute("id", sign.get("subject"));
-			} else {
 				Date expiration = (Date) sign.get("expiration");
 				if (expiration.getTime() < System.currentTimeMillis()) {
-					HttpServletResponse hsp = (HttpServletResponse) response;
 					hsp.sendRedirect("../login.jsp");
+					return;
+				} else {
+					request.setAttribute("id", sign.get("subject"));
 				}
+			} else {
+				hsp.sendRedirect("../login.jsp");
+				return;
 			}
+		} else {
+			hsp.sendRedirect("../login.jsp");
+			return;
 		}
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
